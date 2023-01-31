@@ -33,7 +33,7 @@ const htmlTemplate = ({ name, id, email, github, office }) =>
         <ul class="list-group">
           <li class="list-group-item">ID: ${id}</li>
           <li class="list-group-item">Email: <a href="mailto:${email}">${email}</a></li>
-          <li class="list-group-item">Github: <a href="https://github.com/${github}">${github}</a></li>
+          <li class="list-group-item">Github: <a href="https://github.com/${github}" target="_blank">${github}</a></li>
           <li class="list-group-item">Office Number: ${office}</li>
         </ul>
       </div> 
@@ -51,7 +51,7 @@ const engineerTemplate = ({ name, id, email, github }) =>
 <ul class="list-group">
   <li class="list-group-item">ID: ${id}</li>
   <li class="list-group-item">Email: <a href="mailto:${email}">${email}</a></li>
-  <li class="list-group-item">Github: <a href="https://github.com/${github}">${github}</a></li>
+  <li class="list-group-item">Github: <a href="https://github.com/${github}" target="_blank">${github}</a></li>
 </ul>
 </div>
 `;
