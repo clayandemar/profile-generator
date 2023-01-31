@@ -117,7 +117,7 @@ inquirer
     } else if (allMembers.newMember === 'Intern') {
       getIntern()
     } else if (allMembers.newMember === 'No') {
-      writeToFile("index.html", htmlTemplate(allMembers))
+      writeToFile("./dist/index.html", htmlTemplate(allMembers))
     }
   })
 
@@ -172,7 +172,7 @@ function getEngineer() {
         getIntern()
       } else if (engineer.newMember === 'No') {
         console.log(allMembers)
-        writeToFile("index.html", htmlTemplate(allMembers))
+        writeToFile("./dist/index.html", htmlTemplate(allMembers))
       }
     })
 };
@@ -216,7 +216,7 @@ function getIntern() {
         getIntern()
       } else if (intern.newMember === 'No') {
         console.log(allMembers)
-        writeToFile("index.html", htmlTemplate(allMembers))
+        writeToFile("./dist/index.html", htmlTemplate(allMembers))
       }
     })
 };
