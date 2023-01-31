@@ -70,9 +70,64 @@ inquirer.prompt([
   .then(function (answers) {
     console.log(answers);
     if (answers.newMember === 'Engineer') {
-      //TODO
+      inquirer.prompt ([
+        {
+          type: 'input',
+          message: 'What is your name?',
+          name: 'name'
+        },
+        {
+          type: 'input',
+          message: 'Type in your id number:',
+          name: 'id'
+        },
+        {
+          type: 'input',
+          message: 'Type in your email address',
+          name: 'email'
+        },
+        {
+          type: 'input',
+          message: 'Type in your GitHub username',
+          name: 'github'
+        },
+        {
+          type: 'list',
+          message: 'Would you like to add another team member?',
+          choices: ['Engineer', 'Intern', 'No'],
+          name: 'newMember'
+        },
+      
+      ])
     } else if (answers.newMember === 'Intern') {
-      //TODO
+      inquirer.prompt ([
+        {
+          type: 'input',
+          message: 'What is your name?',
+          name: 'name'
+        },
+        {
+          type: 'input',
+          message: 'Type in your id number:',
+          name: 'id'
+        },
+        {
+          type: 'input',
+          message: 'Type in your email address',
+          name: 'email'
+        },
+        {
+          type: 'input',
+          message: 'Type in the school you are attending',
+          name: 'school'
+        },
+        {
+          type: 'list',
+          message: 'Would you like to add another team member?',
+          choices: ['Engineer', 'Intern', 'No'],
+          name: 'newMember'
+        },
+      ])
     } else if (answers.newMember === 'No') {
       writeToFile("index.html", htmlTemplate(answers))
     }
