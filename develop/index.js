@@ -26,6 +26,7 @@ const htmlTemplate = ({ name, job, id, email, github, office }) =>
   </body>
   </html>
 `;
+
 inquirer.prompt([
   {
     type: 'input',
