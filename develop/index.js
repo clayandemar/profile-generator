@@ -1,7 +1,8 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+var allMembers = null
 
-//HTML template for profile generator
+//HTML template for profile generatord
 const htmlTemplate = ({ name, job, id, email, github, office, school }) =>
   `
   <!DOCTYPE html>
@@ -31,13 +32,13 @@ const htmlTemplate = ({ name, job, id, email, github, office, school }) =>
 `;
 
 //Questions for manager
-inquirer.prompt([
+inquirer
+  .prompt([
   {
     type: 'input',
     message: 'What is your name?',
     name: 'name'
   },
-
   {
     type: 'list',
     message: 'Are you the manager?',
@@ -72,17 +73,20 @@ inquirer.prompt([
   },
 ])
 
-// Taking manager data and asking if you will be adding an engineer or intern or if you're all done
+  // Taking manager data and asking if you will be adding an engineer or intern or if you're all done
   .then(function (answers) {
-    console.log(answers);
-    if (answers.newMember === 'Engineer') {
-      getEngineer()
-    } else if (answers.newMember === 'Intern') {
-      getIntern()
-    } else if (answers.newMember === 'No') {
-      writeToFile("index.html", htmlTemplate(answers))
-    }
-  });
+    allMembers = answers;
+    allMembers.engineers = [];
+    allMembers.interns = [];
+    console.log(allMembers);
+      if (allMembers.newMember === 'Engineer') {
+        getEngineer()
+      } else if (allMembers.newMember === 'Intern') {
+        getIntern()
+      } else if (allMembers.newMember === 'No') {
+        writeToFile("index.html", htmlTemplate(allMembers))
+      }
+  })
 
 // Writing data into an HTML file
 function writeToFile(fileName, data) {
@@ -97,7 +101,7 @@ function writeToFile(fileName, data) {
 
 // Function to get the next engineer and ask the following prompt
 function getEngineer() {
-  inquirer.prompt ([
+  inquirer.prompt([
     {
       type: 'input',
       message: 'What is your name?',
@@ -126,15 +130,23 @@ function getEngineer() {
     },
   ])
 
-  .then(function(answers2){
-    console.log(answers2)
-    
-  })
-}
+    .then(function (engineer) {
+      console.log(engineer)
+      allMembers.engineers.push(engineer)
+      if (engineer.newMember === 'Engineer') {
+        getEngineer()
+      } else if (engineer.newMember === 'Intern') {
+        getIntern()
+      } else if (engineer.newMember === 'No') {
+        console.log(allMembers)
+        writeToFile("index.html", htmlTemplate(allMembers))
+      }
+    })
+};
 
 // Function to get the next Intern and ask the following prompt
 function getIntern() {
-  inquirer.prompt ([
+  inquirer.prompt([
     {
       type: 'input',
       message: 'What is your name?',
@@ -162,4 +174,16 @@ function getIntern() {
       name: 'newMember'
     },
   ])
-}
+  .then(function (intern) {
+    console.log(intern)
+    allMembers.interns.push(intern)
+    if (intern.newMember === 'Engineer') {
+      getEngineer()
+    } else if (intern.newMember === 'Intern') {
+      getIntern()
+    } else if (intern.newMember === 'No') {
+      console.log(allMembers)
+      writeToFile("index.html", htmlTemplate(allMembers))
+    }
+  })
+};
