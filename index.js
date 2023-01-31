@@ -1,6 +1,31 @@
+class Manager {
+  name = "";
+  id = "";
+  email = "";
+  github = "";
+  office = "";
+  engineers = [];
+  interns = [];
+  }
+  
+  class Engineer {
+    name = "";
+    id = "";
+    email = "";
+    github = "";
+  }
+  
+  class Intern {
+    name = "";
+    id = "";
+    email = "";
+    school = "";
+  }
+
+
 const inquirer = require('inquirer');
 const fs = require('fs');
-var allMembers = null
+var allMembers = new Manager();
 
 
 function generateNewMembers() {
