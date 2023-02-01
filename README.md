@@ -28,7 +28,7 @@ THEN I am presented a message saying that my team profile page has been complete
 
 ## Link and Video
 
-[url](https://clayandemar.github.io/profile-generator/)
+[url](https://github.com/clayandemar/profile-generator)
 
 ![Video](./Assets/screen.mov)
 
