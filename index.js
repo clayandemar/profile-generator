@@ -1,9 +1,10 @@
 
 const inquirer = require('inquirer');
 const fs = require('fs');
-const Manager = require('./lib/manager.js');
-const Engineer = require('./lib/engineer.js');
-const Intern = require('./lib/intern.js');
+const Manager = require('./lib/Manager.js');
+const Engineer = require('./lib/Engineer.js');
+const Intern = require('./lib/Intern.js');
+const Employee = require('./lib/Employee.js'); 
 var manager = new Manager();
 
 
@@ -19,7 +20,7 @@ function generateNewMembers() {
 }
 
 //HTML template for profile manager
-const htmlTemplate = ({ name, id, email, github, office }) =>
+const htmlTemplate = ({ name, id, email, role, office }) =>
   `
   <!DOCTYPE html>
   <html lang="en">
@@ -33,11 +34,10 @@ const htmlTemplate = ({ name, id, email, github, office }) =>
     <header class="p-5 mb-4 header bg-light">
       <div class="container">
         <h1 class="display-4">${name}</h1>
-        <h2 class="lead">Positon: Manager</h2>
+        <h2 class="lead">Positon: ${role}</h2>
         <ul class="list-group">
           <li class="list-group-item">ID: ${id}</li>
           <li class="list-group-item">Email: <a href="mailto:${email}">${email}</a></li>
-          <li class="list-group-item">Github: <a href="https://github.com/${github}" target="_blank">${github}</a></li>
           <li class="list-group-item">Office Number: ${office}</li>
         </ul>
       </div> 
@@ -48,10 +48,10 @@ const htmlTemplate = ({ name, id, email, github, office }) =>
 `;
 
 //HTML template for profile engineer
-const engineerTemplate = ({ name, id, email, github }) =>
+const engineerTemplate = ({ name, role, id, email, github }) =>
   `<div class="container">
 <h1 class="display-4">${name}</h1>
-<h2 class="lead">Positon: Engineer</h2>
+<h2 class="lead">Positon: ${role}</h2>
 <ul class="list-group">
   <li class="list-group-item">ID: ${id}</li>
   <li class="list-group-item">Email: <a href="mailto:${email}">${email}</a></li>
@@ -61,10 +61,10 @@ const engineerTemplate = ({ name, id, email, github }) =>
 `;
 
 //HTML template for profile engineer
-const internTemplate = ({ name, id, email, school }) =>
+const internTemplate = ({ name, role, id, email, school }) =>
   `<div class="container">
 <h1 class="display-4">${name}</h1>
-<h2 class="lead">Positon: Intern</h2>
+<h2 class="lead">Positon: ${role}</h2>
 <ul class="list-group">
   <li class="list-group-item">ID: ${id}</li>
   <li class="list-group-item">Email: <a href="mailto:${email}">${email}</a></li>
@@ -86,11 +86,6 @@ inquirer
       type: 'input',
       message: 'Type in your id number:',
       name: 'id'
-    },
-    {
-      type: 'input',
-      message: 'Type in your GitHub username',
-      name: 'github'
     },
     {
       type: 'input',
