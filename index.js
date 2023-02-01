@@ -4,15 +4,16 @@ const fs = require('fs');
 const Manager = require('./lib/manager.js');
 const Engineer = require('./lib/engineer.js');
 const Intern = require('./lib/intern.js');
+var manager = new Manager();
 
 
 function generateNewMembers() {
-  console.log(allMembers);
+  console.log(manager);
   var allHtml = ""
-  for (var i = 0; i < allMembers.engineers.length; i++) {
-    allHtml += engineerTemplate(allMembers.engineers[i]);
-  }   for (var i = 0; i < allMembers.interns.length; i++) {
-    allHtml += internTemplate(allMembers.interns[i]);
+  for (var i = 0; i < manager.engineers.length; i++) {
+    allHtml += engineerTemplate(manager.engineers[i]);
+  }   for (var i = 0; i < manager.interns.length; i++) {
+    allHtml += internTemplate(manager.interns[i]);
   }
   return allHtml;
 }
@@ -111,16 +112,18 @@ inquirer
 
   // Taking manager data and asking if you will be adding an engineer or intern or if you're all done
   .then(function (answers) {
-    allMembers = answers;
-    allMembers.engineers = [];
-    allMembers.interns = [];
-    console.log(allMembers);
-    if (allMembers.newMember === 'Engineer') {
+    manager.name = answers.name;
+    manager.id = answers.id;
+    manager.email = answers.email;
+    manager.github = answers.github;
+    manager.office = answers.office;
+    console.log(manager);
+    if (answers.newMember === 'Engineer') {
       getEngineer()
-    } else if (allMembers.newMember === 'Intern') {
+    } else if (answers.newMember === 'Intern') {
       getIntern()
-    } else if (allMembers.newMember === 'No') {
-      writeToFile("./dist/index.html", htmlTemplate(allMembers))
+    } else if (answers.newMember === 'No') {
+      writeToFile("./dist/index.html", htmlTemplate(manager))
     }
   })
 
@@ -168,14 +171,14 @@ function getEngineer() {
 
     .then(function (engineer) {
       console.log(engineer)
-      allMembers.engineers.push(engineer)
+      manager.engineers.push(engineer)
       if (engineer.newMember === 'Engineer') {
         getEngineer()
       } else if (engineer.newMember === 'Intern') {
         getIntern()
       } else if (engineer.newMember === 'No') {
-        console.log(allMembers)
-        writeToFile("./dist/index.html", htmlTemplate(allMembers))
+        console.log(manager)
+        writeToFile("./dist/index.html", htmlTemplate(manager))
       }
     })
 };
@@ -212,14 +215,14 @@ function getIntern() {
   ])
     .then(function (intern) {
       console.log(intern)
-      allMembers.interns.push(intern)
+      manager.interns.push(intern)
       if (intern.newMember === 'Engineer') {
         getEngineer()
       } else if (intern.newMember === 'Intern') {
         getIntern()
       } else if (intern.newMember === 'No') {
-        console.log(allMembers)
-        writeToFile("./dist/index.html", htmlTemplate(allMembers))
+        console.log(manager)
+        writeToFile("./dist/index.html", htmlTemplate(manager))
       }
     })
 };
