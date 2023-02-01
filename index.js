@@ -51,7 +51,7 @@ const htmlTemplate = ({ name, id, email, role, office }) =>
 const engineerTemplate = ({ name, role, id, email, github }) =>
   `<div class="container">
 <h1 class="display-4">${name}</h1>
-<h2 class="lead">Positon: ${role}</h2>
+<h2 class="lead">Positon: Engineer</h2>
 <ul class="list-group">
   <li class="list-group-item">ID: ${id}</li>
   <li class="list-group-item">Email: <a href="mailto:${email}">${email}</a></li>
@@ -64,7 +64,7 @@ const engineerTemplate = ({ name, role, id, email, github }) =>
 const internTemplate = ({ name, role, id, email, school }) =>
   `<div class="container">
 <h1 class="display-4">${name}</h1>
-<h2 class="lead">Positon: ${role}</h2>
+<h2 class="lead">Positon: Intern</h2>
 <ul class="list-group">
   <li class="list-group-item">ID: ${id}</li>
   <li class="list-group-item">Email: <a href="mailto:${email}">${email}</a></li>
