@@ -29,7 +29,8 @@ THEN I am presented a message saying that my team profile page has been complete
 ## Link and Video
 
 [url](https://clayandemar.github.io/profile-generator/)
-![Video](./Assets/video/screen.mov)
+
+![Video](./Assets/screen.mov)
 
 
 © 2022 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
