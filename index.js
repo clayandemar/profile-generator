@@ -1,34 +1,9 @@
-class Manager {
-  constructor(){}
-  name = "";
-  id = "";
-  email = "";
-  github = "";
-  office = "";
-  engineers = [];
-  interns = [];
-  }
-  
-  class Engineer {
-    constructor(){}
-    name = "";
-    id = "";
-    email = "";
-    github = "";
-  }
-  
-  class Intern {
-    constructor(){}
-    name = "";
-    id = "";
-    email = "";
-    school = "";
-  }
-
 
 const inquirer = require('inquirer');
 const fs = require('fs');
-var allMembers = new Manager();
+const Manager = require('./lib/manager.js');
+const Engineer = require('./lib/engineer.js');
+const Intern = require('./lib/intern.js');
 
 
 function generateNewMembers() {
