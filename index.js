@@ -1,4 +1,5 @@
 class Manager {
+  constructor(){}
   name = "";
   id = "";
   email = "";
@@ -9,6 +10,7 @@ class Manager {
   }
   
   class Engineer {
+    constructor(){}
     name = "";
     id = "";
     email = "";
@@ -16,6 +18,7 @@ class Manager {
   }
   
   class Intern {
+    constructor(){}
     name = "";
     id = "";
     email = "";
